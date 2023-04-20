@@ -55,9 +55,12 @@ def main():
     first = True
     while True:
         if not first:
-            logging.info('Sleeping for %s seconds', sleep_interval)
-            sys.stdout.flush()
-            time.sleep(sleep_interval)
+            if sleep_interval > 0:
+                logging.info('Sleeping for %s seconds', sleep_interval)
+                sys.stdout.flush()
+                time.sleep(sleep_interval)
+            else:
+                break
         first = False
 
         if config['modem_auth_required']:
